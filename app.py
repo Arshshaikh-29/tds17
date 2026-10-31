@@ -1014,3 +1014,11 @@ async def mailroom_post(request: Request) -> Response:
 @app.get("/")
 async def health_check() -> Response:
   return json_response({"status": "ok", "profile": PROFILE_ID})
+@app.post("/v2/incidents")
+async def incidents_v2_post(request: Request) -> Response:
+  return await handle_incident_triage(request)
+
+
+@app.post("/incidents")
+async def incidents_post(request: Request) -> Response:
+  return await handle_incident_triage(request)
